@@ -1,0 +1,24 @@
+# Build outputs
+src/ui/build/
+src/db_engine/target/
+src/connectors/bin/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+src/scraper/.venv/
+
+# Generated protobuf
+src/connectors/proto/*.pb.go
+src/scraper/hypervane_pb2*.py
+
+# IDE / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Runtime sockets
+/tmp/hypervane*.sock

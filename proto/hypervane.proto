@@ -1,0 +1,88 @@
+syntax = "proto3";
+
+package hypervane;
+
+option go_package = "github.com/hypervane/connectors/ipc";
+
+// ── Scraper → UI ──────────────────────────────────────────────────────────────
+
+message PreviewReady {
+  string rom_id    = 1;
+  string file_path = 2; // absolute path to encoded .mp4/.webm loop
+}
+
+message ScrapeProgress {
+  string rom_id   = 1;
+  float  percent  = 2;
+  string stage    = 3; // "fetch" | "encode" | "done" | "error"
+  string message  = 4;
+}
+
+// ── UI → Connectors ───────────────────────────────────────────────────────────
+
+message LaunchRequest {
+  string rom_id       = 1;
+  string rom_path     = 2;
+  string emulator_id  = 3; // "duckstation" | "dolphin" | "retroarch" | ...
+  map<string, string> overrides = 4; // per-launch config overrides
+}
+
+message KillRequest {
+  uint32 pid = 1;
+}
+
+// ── Connectors → UI ───────────────────────────────────────────────────────────
+
+message ProcessEvent {
+  enum Kind {
+    STARTED  = 0;
+    STOPPED  = 1;
+    CRASHED  = 2;
+    METRICS  = 3;
+  }
+  Kind   kind    = 1;
+  uint32 pid     = 2;
+  string rom_id  = 3;
+  uint64 runtime_ms = 4;
+  string crash_info = 5;
+}
+
+// ── DB → UI (query results) ───────────────────────────────────────────────────
+
+message RomEntry {
+  string id          = 1;
+  string title       = 2;
+  string platform    = 3;
+  string region      = 4;
+  string file_path   = 5;
+  uint64 file_size   = 6;
+  string crc32       = 7;
+  string sha1        = 8;
+  bool   verified    = 9; // matched against No-Intro / Redump
+}
+
+message SearchRequest {
+  string query    = 1;
+  string platform = 2; // optional filter
+  uint32 limit    = 3;
+  uint32 offset   = 4;
+}
+
+message SearchResponse {
+  repeated RomEntry results = 1;
+  uint32 total_hits         = 2;
+}
+
+// ── Envelope (all socket messages are wrapped here) ──────────────────────────
+
+message Envelope {
+  oneof payload {
+    PreviewReady    preview_ready    = 1;
+    ScrapeProgress  scrape_progress  = 2;
+    LaunchRequest   launch_request   = 3;
+    KillRequest     kill_request     = 4;
+    ProcessEvent    process_event    = 5;
+    SearchRequest   search_request   = 6;
+    SearchResponse  search_response  = 7;
+  }
+}

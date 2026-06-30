@@ -1,0 +1,37 @@
+[package]
+name = "hypervane-db"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.75"
+
+[[bin]]
+name = "hypervane-db"
+path = "src/main.rs"
+
+[lib]
+name = "hypervane_db"
+path = "src/lib.rs"
+
+[dependencies]
+rusqlite = { version = "0.31", features = ["bundled", "vtab", "functions"] }
+tantivy = "0.21"
+crc32fast = "1.4"
+sha1 = "0.10"
+tokio = { version = "1", features = ["full"] }
+prost = "0.12"
+prost-types = "0.12"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "1"
+anyhow = "1"
+shellexpand = "3"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+[build-dependencies]
+prost-build = "0.12"
+
+[profile.release]
+lto = true
+codegen-units = 1
+opt-level = 3
