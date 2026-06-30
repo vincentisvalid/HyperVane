@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- Dark background -->
+  <rect width="128" height="128" rx="18" fill="#0d0d1a"/>
+
+  <!-- Outer ring glow -->
+  <circle cx="64" cy="64" r="52" fill="none" stroke="#1144ff" stroke-width="2" opacity="0.6"/>
+  <circle cx="64" cy="64" r="50" fill="none" stroke="#3366ff" stroke-width="1" opacity="0.4"/>
+
+  <!-- Vane blade 1 (top-right) -->
+  <path d="M64,64 Q88,30 96,16 Q80,40 64,64Z" fill="#2255ff" opacity="0.9"/>
+  <!-- Vane blade 2 (bottom-right) -->
+  <path d="M64,64 Q98,78 114,88 Q88,76 64,64Z" fill="#1144ee" opacity="0.9"/>
+  <!-- Vane blade 3 (bottom-left) -->
+  <path d="M64,64 Q40,98 30,112 Q48,88 64,64Z" fill="#2255ff" opacity="0.9"/>
+  <!-- Vane blade 4 (top-left) -->
+  <path d="M64,64 Q30,50 14,40 Q40,52 64,64Z" fill="#1144ee" opacity="0.9"/>
+
+  <!-- Inner ring -->
+  <circle cx="64" cy="64" r="18" fill="none" stroke="#4477ff" stroke-width="2.5" opacity="0.8"/>
+
+  <!-- Center hub -->
+  <circle cx="64" cy="64" r="7" fill="#3366ff"/>
+  <circle cx="64" cy="64" r="4" fill="#aabbff"/>
+</svg>

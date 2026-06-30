@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=HyperVane
+GenericName=Emulation Frontend
+Comment=Intelligent multi-system emulation frontend and library manager
+Exec=hypervane
+Icon=hypervane
+Type=Application
+Categories=Game;Emulator;
+Keywords=emulator;rom;retro;gaming;
+StartupNotify=true
+StartupWMClass=hypervane-ui

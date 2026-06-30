@@ -73,9 +73,12 @@ target_link_libraries(hypervane-ui PRIVATE
     absl::synchronization
 )
 
-# Bake the project assets path in so IntroOverlay can find the intro video.
+# Assets path — override at configure time for installed builds (e.g. Nix).
+if(NOT DEFINED HYPERVANE_ASSETS_DIR)
+    set(HYPERVANE_ASSETS_DIR "${CMAKE_SOURCE_DIR}/../../assets")
+endif()
 target_compile_definitions(hypervane-ui PRIVATE
-    HYPERVANE_ASSETS_DIR="${CMAKE_SOURCE_DIR}/../../assets"
+    HYPERVANE_ASSETS_DIR="${HYPERVANE_ASSETS_DIR}"
 )
 
 install(TARGETS hypervane-ui DESTINATION bin)
