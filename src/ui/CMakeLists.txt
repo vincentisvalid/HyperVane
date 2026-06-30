@@ -20,27 +20,31 @@ find_package(Qt6 REQUIRED COMPONENTS
 find_package(Protobuf REQUIRED)
 find_package(absl REQUIRED)
 
+# Prefix all source/header paths with CMAKE_CURRENT_SOURCE_DIR so that
+# Qt6's qt_add_executable (which resolves relative paths against the
+# binary dir when sources pass through function arguments) finds them
+# correctly in both dev and installed/Nix builds.
 set(SOURCES
-    main.cpp
-    src/MainWindow.cpp
-    src/LibraryView.cpp
-    src/PreviewPlayer.cpp
-    src/GameGridDelegate.cpp
-    src/IPCClient.cpp
-    src/IntroOverlay.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MainWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/LibraryView.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/PreviewPlayer.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/GameGridDelegate.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/IPCClient.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/IntroOverlay.cpp
 )
 
 set(HEADERS
-    include/MainWindow.h
-    include/LibraryView.h
-    include/PreviewPlayer.h
-    include/GameGridDelegate.h
-    include/IPCClient.h
-    include/IntroOverlay.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MainWindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/LibraryView.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/PreviewPlayer.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/GameGridDelegate.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/IPCClient.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/IntroOverlay.h
 )
 
 protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS
-    ${CMAKE_SOURCE_DIR}/../../proto/hypervane.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../proto/hypervane.proto
 )
 
 qt_add_executable(hypervane-ui
@@ -48,7 +52,7 @@ qt_add_executable(hypervane-ui
     ${HEADERS}
     ${PROTO_SRCS}
     ${PROTO_HDRS}
-    resources/resources.qrc
+    ${CMAKE_CURRENT_SOURCE_DIR}/resources/resources.qrc
 )
 
 target_include_directories(hypervane-ui PRIVATE

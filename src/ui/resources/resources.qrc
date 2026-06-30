@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/themes">
+        <file>themes/dark.qss</file>
+    </qresource>
+    <qresource prefix="/icons">
+        <!-- placeholder: add icons/logo.png etc. once assets are sourced -->
+    </qresource>
+</RCC>

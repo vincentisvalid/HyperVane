@@ -1,0 +1,38 @@
+/* HyperVane dark theme */
+QMainWindow, QWidget {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+    font-family: "Inter", "Segoe UI", sans-serif;
+    font-size: 13px;
+}
+
+QLineEdit {
+    background-color: #313244;
+    border: 1px solid #45475a;
+    border-radius: 6px;
+    padding: 6px 10px;
+    color: #cdd6f4;
+}
+
+QLineEdit:focus {
+    border-color: #89b4fa;
+}
+
+QListView {
+    background-color: #181825;
+    border: none;
+}
+
+QScrollBar:vertical {
+    background: #1e1e2e;
+    width: 8px;
+}
+
+QScrollBar::handle:vertical {
+    background: #45475a;
+    border-radius: 4px;
+}
+
+QSplitter::handle {
+    background: #313244;
+}
