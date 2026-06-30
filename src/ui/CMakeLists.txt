@@ -14,6 +14,7 @@ find_package(Qt6 REQUIRED COMPONENTS
     Multimedia
     MultimediaWidgets
     Network
+    Svg
 )
 
 find_package(Protobuf REQUIRED)
@@ -63,6 +64,7 @@ target_link_libraries(hypervane-ui PRIVATE
     Qt6::Multimedia
     Qt6::MultimediaWidgets
     Qt6::Network
+    Qt6::Svg
     ${Protobuf_LIBRARIES}
     absl::hash
     absl::strings
