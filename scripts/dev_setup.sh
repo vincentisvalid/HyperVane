@@ -15,8 +15,10 @@ if [[ -z "${IN_NIX_SHELL:-}" ]]; then
     python3 -m venv "$ROOT/src/scraper/.venv"
     source "$ROOT/src/scraper/.venv/bin/activate"
     pip install -r "$ROOT/src/scraper/requirements.txt"
+    pip install -e "$ROOT/src/scraper"  # yt-load, yt-gameplay-search entry points
 else
-    echo "==> Nix shell detected — skipping Python venv (packages provided by flake)."
+    echo "==> Nix shell detected — registering entry points via pip…"
+    pip install -e "$ROOT/src/scraper" --no-build-isolation
 fi
 
 echo "==> Generating Protobuf stubs…"

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import asyncio
 import logging
+import re
 import struct
 from pathlib import Path
 from typing import TYPE_CHECKING
@@ -15,7 +16,14 @@ if TYPE_CHECKING:
 
 log = logging.getLogger(__name__)
 
-_FRAME_HEADER = struct.Struct(">I")  # 4-byte big-endian length prefix
+_FRAME_HEADER = struct.Struct(">I")
+MAIN_SOCKET_PATH = "/tmp/hypervane.sock"
+PREVIEW_DIR = Path("/tmp/hypervane-previews")
+
+
+def _pack(envelope: pb.Envelope) -> bytes:
+    data = envelope.SerializeToString()
+    return _FRAME_HEADER.pack(len(data)) + data
 
 
 class IPCSocketServer:
@@ -23,6 +31,7 @@ class IPCSocketServer:
         self._socket_path = socket_path
         self._worker = worker
         self._server: asyncio.Server | None = None
+        worker._on_preview_ready = self._on_preview_ready
 
     async def serve_forever(self) -> None:
         Path(self._socket_path).unlink(missing_ok=True)
@@ -59,10 +68,39 @@ class IPCSocketServer:
         envelope: pb.Envelope,
         writer: asyncio.StreamWriter,
     ) -> None:
-        if envelope.HasField("search_request"):
-            req = envelope.search_request
-            log.debug("Search request: query=%s", req.query)
-            # Forward to DB engine via its own socket (not yet wired)
+        if envelope.HasField("launch_request"):
+            req = envelope.launch_request
+            title = _extract_title(req.rom_path, req.rom_id)
+            log.info("Scraping preview for %s (%s)", req.rom_id, title)
+
+            PREVIEW_DIR.mkdir(parents=True, exist_ok=True)
+            from scraper.ytdlp_worker import ScrapeJob
+
+            # Skip if cached preview already exists
+            cached = PREVIEW_DIR / f"{req.rom_id}_preview.mp4"
+            if cached.exists():
+                log.info("Cache HIT — sending preview_ready immediately for %s", req.rom_id)
+                await self._on_preview_ready(req.rom_id, str(cached))
+                return
+
+            job = ScrapeJob(
+                rom_id=req.rom_id,
+                query=f"{title} gameplay",
+                out_dir=PREVIEW_DIR,
+            )
+            self._worker.enqueue(job)
+
+    async def _on_preview_ready(self, rom_id: str, file_path: str) -> None:
+        env = pb.Envelope()
+        env.preview_ready.rom_id = rom_id
+        env.preview_ready.file_path = file_path
+        try:
+            _, writer = await asyncio.open_unix_connection(MAIN_SOCKET_PATH)
+            writer.write(_pack(env))
+            await writer.drain()
+            writer.close()
+        except Exception:
+            log.warning("Could not send preview_ready to main IPC", exc_info=True)
 
     @staticmethod
     async def _read_envelopes(reader: asyncio.StreamReader):
@@ -73,3 +111,10 @@ class IPCSocketServer:
             env = pb.Envelope()
             env.ParseFromString(payload)
             yield env
+
+
+def _extract_title(rom_path: str, rom_id: str) -> str:
+    m = re.search(r"/([^/]+)\.rom$", rom_path)
+    if m:
+        return m.group(1)
+    return rom_id.replace("-", " ").title()

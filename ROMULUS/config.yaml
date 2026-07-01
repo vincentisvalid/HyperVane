@@ -1,0 +1,24 @@
+output_dir: ../manual_roms
+catalog_db: romulus_catalog.db
+amount: 10
+
+gamelists_dir: ../scraper/gamelists
+
+browser:
+  headless: true
+  user_data_dir: ~/.cache/hypervane/browser
+  request_delay_ms: 1500
+  max_retries: 3
+
+sources:
+  romsfun:
+    platforms: [ps1, ps2, ps3, psp]
+    base_url: https://romsfun.com
+  pspkg:
+    platforms: [ps4, ps5]
+    base_url: https://pspkg.com
+
+download:
+  verify_hashes: true
+  skip_existing: true
+  max_screenshots: 3

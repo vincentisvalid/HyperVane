@@ -3,7 +3,6 @@
 import asyncio
 import logging
 import signal
-import sys
 
 from scraper.ytdlp_worker import YtdlpWorker
 from previewer.ffmpeg_pipeline import FfmpegPipeline
@@ -27,11 +26,13 @@ async def main() -> None:
     for sig in (signal.SIGINT, signal.SIGTERM):
         loop.add_signal_handler(sig, lambda: asyncio.create_task(shutdown(server)))
 
+    asyncio.create_task(worker.run())
+
     log.info("Scraper daemon starting on %s", SOCKET_PATH)
     await server.serve_forever()
 
 
-async def shutdown(server: "IPCSocketServer") -> None:
+async def shutdown(server: IPCSocketServer) -> None:
     log.info("Shutting down scraper daemon…")
     await server.close()
     asyncio.get_running_loop().stop()

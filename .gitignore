@@ -1,24 +1,38 @@
-# Build outputs
-src/ui/build/
-src/db_engine/target/
-src/connectors/bin/
+# Environments and Secrets
+.env
+*.key
 
-# Python
+# Node / Next.js
+node_modules/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# Rust / C++ / CMake build artifacts
+build/
+target/
+*.o
+*.so.1
+
+# Python cache directories (especially for scraping utilities)
 __pycache__/
-*.pyc
-*.pyo
 .venv/
-src/scraper/.venv/
+.mypy_cache/
+.ipynb_checkpoints
 
-# Generated protobuf
-src/connectors/proto/*.pb.go
-src/scraper/hypervane_pb2*.py
+# Go
+.gopath/
 
-# IDE / OS
-.vscode/
+# Nix build results
+result
+result-*
+
+# Embedded/vendored repo (versioned separately)
+BytesPSX5/
+
+# IDE and OS specific files
 .idea/
 *.swp
 .DS_Store
-
-# Runtime sockets
-/tmp/hypervane*.sock
+.aider*

@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -m py_compile scraper/__init__.py scraper/main.py scraper/pipeline.py scraper/organizer.py scraper/sources/base.py scraper/matchers/title.py scraper/matchers/hash.py scraper/platforms/__init__.py scraper/platforms/ps1.py scraper/platforms/ps2.py scraper/platforms/ps3.py scraper/platforms/ps4.py scraper/platforms/ps5.py scraper/platforms/psp.py)",
+      "Bash(.venv/bin/pip install *)",
+      "Bash(.venv/bin/playwright install *)"
+    ]
+  }
+}

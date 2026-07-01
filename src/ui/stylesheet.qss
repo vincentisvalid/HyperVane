@@ -1,0 +1,64 @@
+/*
+ * HyperVane Cinematic Stylesheet (QSS)
+ * Mimics modern streaming platform UIs (Netflix, Kodi).
+ * Global dark mode scheme with vibrant accent colors.
+ */
+
+QWidget {
+    background-color: #141414; /* Deep background color - Dark Mode Base */
+    color: #ffffff;
+}
+
+/* --- Buttons & Controls --- */
+QPushButton {
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: bold;
+    background-color: #2c2c2c; /* Darker grey for inactive/default state */
+    color: white;
+}
+
+QPushButton:hover {
+    background-color: #3a3a3a; /* Slight lift on hover */
+}
+
+QPushButton#primaryButton {
+    background-color: #e50914; /* Netflix Red accent */
+    color: white;
+}
+
+QPushButton#primaryButton:hover {
+    /* Slightly brighter red for interaction feedback */
+    background-color: #ff2a37; 
+}
+
+/* --- Labels and Text Areas --- */
+QLabel {
+    color: #cccccc; /* Subdued text color for body content */
+}
+
+QLabel#titleLabel {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+}
+
+/* --- Library Grid/Containers --- */
+QFrame#cardContainer {
+    background-color: #1e1e1e; /* Slightly lighter container background */
+    border-radius: 6px;
+    padding: 10px;
+    margin: 5px;
+}
+
+/* Card specific styling for a title entry */
+.title_card {
+    background-color: #2c2c2c;
+    transition-duration: 0.3s; /* Smooth hover effect */
+}
+
+.title_card:hover {
+    transform: scale(1.05); /* Subtle 'pop' on hover */
+    border: 1px solid white;
+}

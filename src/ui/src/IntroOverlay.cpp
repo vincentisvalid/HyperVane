@@ -13,6 +13,7 @@ IntroOverlay::IntroOverlay(const QString &videoPath, QWidget *parent)
     setFocusPolicy(Qt::StrongFocus);
     setFocus();
     setStyleSheet("background: black;");
+    show();
 
     auto *layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);

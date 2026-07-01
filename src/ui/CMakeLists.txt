@@ -32,6 +32,28 @@ set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/GameGridDelegate.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/IPCClient.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/IntroOverlay.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/AccountManager.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/LoginDialog.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/RegisterDialog.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/VirtualKeyboard.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/GameArtLoader.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/EmulatorCoreConfig.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/ControllerWizard.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/UISoundManager.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/ControllerInput.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/ThemeEngine.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/SocoliteEngine.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/SocoliteFriendsList.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/SocoliteChat.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/SocoliteCanvas.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/SocoliteAvatarEditor.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/SocoliteUserSearch.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/SocoliteActivityFeed.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/RomDownloader.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/CoreManager.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/InGameMenu.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/RomHasher.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/GameDetailDialog.cpp
 )
 
 set(HEADERS
@@ -41,6 +63,29 @@ set(HEADERS
     ${CMAKE_CURRENT_SOURCE_DIR}/include/GameGridDelegate.h
     ${CMAKE_CURRENT_SOURCE_DIR}/include/IPCClient.h
     ${CMAKE_CURRENT_SOURCE_DIR}/include/IntroOverlay.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/AccountManager.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/LoginDialog.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/RegisterDialog.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/VirtualKeyboard.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/GameArtLoader.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/EmulatorCoreConfig.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/ControllerWizard.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/UISoundManager.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/ControllerInput.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/ThemeEngine.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/SocoliteTypes.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/SocoliteEngine.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/SocoliteFriendsList.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/SocoliteChat.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/SocoliteCanvas.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/SocoliteAvatarEditor.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/SocoliteUserSearch.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/SocoliteActivityFeed.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/RomDownloader.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/CoreManager.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/InGameMenu.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/RomHasher.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/GameDetailDialog.h
 )
 
 protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS
@@ -73,6 +118,7 @@ target_link_libraries(hypervane-ui PRIVATE
     absl::hash
     absl::strings
     absl::log
+    absl::log_internal_check_op
     absl::status
     absl::synchronization
 )

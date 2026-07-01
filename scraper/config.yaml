@@ -1,0 +1,50 @@
+output_dir: ./output
+
+# Number of ROMs to download per platform run. Override with --amount N on the CLI.
+amount: 10
+
+art:
+  enabled: true
+  types:
+    - box_front
+    - box_back
+    - disc
+    - screenshot
+    - banner
+  max_screenshots: 3
+  preferred_region: us   # us | eu | jp
+  resolution: 1x         # 1x | 2x | original
+
+roms:
+  enabled: true
+  formats:
+    ps1:  [bin_cue, iso]
+    ps2:  [iso]
+    ps3:  [iso, pkg]
+    ps4:  [pkg]
+    psp:  [iso]
+  verify: true
+  skip_existing: true
+
+sources:
+  screenscraper:
+    user: "b1u3g0d"
+    pass: "Qwerty123!"
+  thegamesdb:
+    api_key: ""
+  igdb:
+    client_id: ""
+    client_secret: ""
+
+  romsfun:
+    enabled: true
+    headless: true
+    user_data_dir: ~/.cache/hypervane/browser
+    request_delay_ms: 1500
+    max_retries: 3
+
+platforms:
+  - ps1
+  - ps2
+  - ps3
+  - psp

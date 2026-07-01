@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(go version *)",
+      "Bash(rustc --version)",
+      "Bash(cargo --version)",
+      "Read(//home/b1u3g0d/Projects/HyperVane/data/**)",
+      "Bash(python3 *)",
+      "Bash(protoc --version)"
+    ]
+  }
+}

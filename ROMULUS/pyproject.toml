@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "romulus"
+version = "0.1.0"
+description = "ROMULUS — The PlayStation ROM Downloader and Search Engine"
+requires-python = ">=3.11"
+dependencies = [
+    "playwright>=1.44",
+    "playwright-stealth>=1.0",
+    "httpx[http2]>=0.27",
+    "beautifulsoup4>=4.12",
+    "rapidfuzz>=3.6",
+    "pyyaml>=6.0",
+    "rich>=13.7",
+]
+
+[project.scripts]
+romulus = "romulus.main:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["romulus*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>redump.org &bull; Error</title>
+<meta name="author" content="Redump Team" />
+<meta name="description" content="Redump - disc images information" />
+<meta name="verify-v1" content="BE+hBNbeseE7psVMax1S2M7PMKlwT7ohSUgC5hvZy3k=" />
+<link rel="alternate" type="application/rss+xml" title="Redump RSS - Recent changes" href="/rss/recentchanges/" />
+<link rel="alternate" type="application/rss+xml" title="Redump Forum RSS - Latest posts" href="/rss/forum/" />
+<link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="Redump" />
+<link rel="icon" href="/favicon.ico" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<style type="text/css" media="screen">@import url('/styles/default.css');</style>
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+_uacct = "UA-695695-1";
+urchinTracker();
+//--><!]]>
+</script>
+<script type="text/javascript" src="/javascript/ajax.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+window.onload = function () {
+	document.getElementById('quicksearch').onfocus = function () {if (this.value == 'Quick search') this.value = '';}
+	document.getElementById('quicksearch').onblur  = function () {if (this.value == '') this.value = 'Quick search';}
+}
+//--><!]]>
+</script>
+<script type="text/javascript" src="/javascript/display.js"></script>
+</head>
+<body><div id="header"><img src="/images/logo-left.png" style="float: left;" alt="" /></div>
+<ul id="icons">
+<li><a href="/feeds/"><img src="/images/feed.png" alt="Feeds" title="Feeds" /></a></li>
+<li><a href="http://twitter.com/redump"><img src="/images/twitter.png" alt="Twitter" title="Twitter" /></a></li>
+</ul>
+<form action="/results/" method="post"><div class="menu"><input id="quicksearch" type="text" name="quicksearch" value="Quick search" /><a href="/">Main</a><a href="/discs/" id="menu1" onmouseout="hideelement('1');" onmouseover="showelement('1');">Discs</a><a href="/downloads/">Downloads</a><a id="menu4" onmouseout="hideelement('4');" onmouseover="showelement('4');">Site</a><a href="/guide/">Guide</a><a href="http://wiki.redump.org/">Wiki</a><a href="http://forum.redump.org/">Forum</a></div></form>
+<div class="submenu" id="submenu1" onmouseout="hideelement('1');" onmouseover="showelement('1');">
+<a href="/discs/system/arch/">&bull; Acorn Archimedes</a>
+<a href="/discs/system/mac/">&bull; Apple Macintosh</a>
+<a href="/discs/system/ajcd/">&bull; Atari Jaguar CD Interactive Multimedia System</a>
+<a href="/discs/system/pippin/">&bull; Bandai Pippin</a>
+<a href="/discs/system/qis/">&bull; Bandai Playdia Quick Interactive System</a>
+<a href="/discs/system/acd/">&bull; Commodore Amiga CD</a>
+<a href="/discs/system/cd32/">&bull; Commodore Amiga CD32</a>
+<a href="/discs/system/cdtv/">&bull; Commodore Amiga CDTV</a>
+<a href="/discs/system/fmt/">&bull; Fujitsu FM Towns series</a>
+<a href="/discs/system/fpp/">&bull; funworld Photo Play</a>
+<a href="/discs/system/pc/">&bull; IBM PC compatible</a>
+<a href="/discs/system/ite/">&bull; Incredible Technologies Eagle</a>
+<a href="/discs/system/kea/">&bull; Konami e-Amusement</a>
+<a href="/discs/system/kfb/">&bull; Konami FireBeat</a>
+<a href="/discs/system/ks573/">&bull; Konami System 573</a>
+<a href="/discs/system/ksgv/">&bull; Konami System GV</a>
+<a href="/discs/system/kt/">&bull; Konami Twinkle</a>
+<a href="/discs/system/ixl/">&bull; Mattel Fisher-Price iXL</a>
+<a href="/discs/system/hs/">&bull; Mattel HyperScan</a>
+<a href="/discs/system/vis/">&bull; Memorex Visual Information System</a>
+<a href="/discs/system/xbox/">&bull; Microsoft Xbox</a>
+<a href="/discs/system/xbox360/">&bull; Microsoft Xbox 360</a>
+<a href="/discs/system/trf/">&bull; Namco - Sega - Nintendo Triforce</a>
+<a href="/discs/system/ns12/">&bull; Namco System 12</a>
+<a href="/discs/system/ns246/">&

@@ -1,0 +1,394 @@
+// HyperVane Dark Theme — "Dark Vane"
+// Netflix-inspired dark theme with blue accent
+
+$bg-primary: #141414;
+$bg-secondary: #1f1f1f;
+$bg-card: #2a2a2a;
+$bg-input: #333333;
+$bg-hover: #3a3a3a;
+$accent: #0066cc;
+$accent-hover: #0052a3;
+$accent-light: #4d94ff;
+$text-primary: #ffffff;
+$text-secondary: #b3b3b3;
+$text-muted: #808080;
+$border: #404040;
+$danger: #e50914;
+$danger-hover: #ff0a16;
+$success: #00cc66;
+$warning: #e5a00d;
+$navbar-bg: #0d0d0d;
+$hero-grad-start: #1a1a2e;
+$hero-grad-end: #141414;
+$glow: rgba(0, 102, 204, 0.3);
+
+// Global
+QMainWindow, QWidget {
+    background: $bg-primary;
+    color: $text-primary;
+}
+
+// Navbar
+#navbar {
+    background: $navbar-bg;
+    border-bottom: 1px solid $border;
+}
+
+#navbar QLabel {
+    color: $accent;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#navbar QPushButton {
+    color: $text-secondary;
+    background: transparent;
+    border: none;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+#navbar QPushButton:hover {
+    color: $text-primary;
+}
+
+#navbar QPushButton:checked {
+    color: $accent;
+    border-bottom: 2px solid $accent;
+}
+
+// Hero section
+#heroSection {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 $hero-grad-start, stop:1 $hero-grad-end);
+    border-radius: 12px;
+}
+
+#heroTitle {
+    color: $text-primary;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+#heroSubtitle {
+    color: $text-secondary;
+    font-size: 18px;
+}
+
+// Section headers
+#sectionHeader {
+    color: $text-primary;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 16px 0;
+}
+
+// List view / game grid
+QListView {
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+QListView::item {
+    background: transparent;
+    border: none;
+}
+
+// Search input
+QLineEdit {
+    background: $bg-input;
+    color: $text-primary;
+    border: 2px solid $border;
+    border-radius: 24px;
+    padding: 12px 20px;
+    font-size: 18px;
+    selection-background-color: $accent;
+}
+
+QLineEdit:focus {
+    border-color: $accent;
+    background: $bg-secondary;
+}
+
+QLineEdit::placeholder {
+    color: $text-muted;
+}
+
+// Buttons
+QPushButton {
+    background: $accent;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+QPushButton:hover {
+    background: $accent-hover;
+}
+
+QPushButton:pressed {
+    background: $accent-light;
+}
+
+// Group boxes
+QGroupBox {
+    background: $bg-card;
+    border: 1px solid $border;
+    border-radius: 8px;
+    margin-top: 12px;
+    padding: 16px;
+    font-weight: bold;
+    color: $text-primary;
+    font-size: 14px;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 12px;
+    padding: 0 6px;
+    color: $accent;
+}
+
+// Progress bar
+QProgressBar {
+    background: $bg-input;
+    border: none;
+    border-radius: 3px;
+    text-align: center;
+    height: 6px;
+}
+
+QProgressBar::chunk {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 $accent, stop:1 $accent-light);
+    border-radius: 3px;
+}
+
+// Scrollbars
+QScrollBar:vertical {
+    background: transparent;
+    width: 8px;
+    margin: 0;
+}
+
+QScrollBar::handle:vertical {
+    background: $border;
+    border-radius: 4px;
+    min-height: 30px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: $accent;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0;
+    border: none;
+}
+
+QScrollBar:horizontal {
+    background: transparent;
+    height: 8px;
+}
+
+QScrollBar::handle:horizontal {
+    background: $border;
+    border-radius: 4px;
+    min-width: 30px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background: $accent;
+}
+
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
+    width: 0;
+    border: none;
+}
+
+// Titles
+#title {
+    color: $text-primary;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#subtitle {
+    color: $text-secondary;
+    font-size: 16px;
+}
+
+// Profile card
+#profileCard {
+    background: $bg-card;
+    border: 1px solid $border;
+    border-radius: 12px;
+    padding: 24px;
+}
+
+// Muted text
+#muted {
+    color: $text-muted;
+    font-size: 14px;
+}
+
+// Danger button
+#danger {
+    background: transparent;
+    color: $danger;
+    border: 1px solid $danger;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 14px;
+}
+
+#danger:hover {
+    background: $danger;
+    color: white;
+}
+
+// Combo box
+QComboBox {
+    background: $bg-input;
+    color: $text-primary;
+    border: 1px solid $border;
+    border-radius: 6px;
+    padding: 8px 12px;
+    min-width: 200px;
+}
+
+QComboBox:hover {
+    border-color: $accent;
+}
+
+QComboBox::drop-down {
+    border: none;
+    width: 30px;
+}
+
+QComboBox::down-arrow {
+    image: none;
+    border: none;
+}
+
+QComboBox QAbstractItemView {
+    background: $bg-secondary;
+    color: $text-primary;
+    border: 1px solid $border;
+    selection-background-color: $accent;
+    selection-color: white;
+    outline: none;
+}
+
+// Spin box
+QSpinBox {
+    background: $bg-input;
+    color: $text-primary;
+    border: 1px solid $border;
+    border-radius: 6px;
+    padding: 6px 10px;
+}
+
+QSpinBox:focus {
+    border-color: $accent;
+}
+
+// Splitter
+QSplitter::handle {
+    background: $border;
+    width: 1px;
+}
+
+// Tool tips
+QToolTip {
+    background: $bg-card;
+    color: $text-primary;
+    border: 1px solid $border;
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-size: 12px;
+}
+
+// Virtual keyboard
+#virtualKeyboard {
+    background: $bg-card;
+    border: 1px solid $border;
+    border-radius: 12px;
+    padding: 8px;
+}
+
+#virtualKeyboard QPushButton {
+    background: $bg-input;
+    color: $text-primary;
+    border: 1px solid $border;
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 13px;
+    min-width: 32px;
+}
+
+#virtualKeyboard QPushButton:hover {
+    background: $bg-hover;
+    border-color: $accent;
+}
+
+#virtualKeyboard QPushButton:pressed {
+    background: $accent;
+}
+
+// Controller wizard
+QWizard {
+    background: $bg-primary;
+}
+
+QWizard QLabel {
+    color: $text-primary;
+}
+
+QWizard QTableWidget {
+    background: $bg-secondary;
+    color: $text-primary;
+    border: 1px solid $border;
+    gridline-color: $border;
+}
+
+QWizard QHeaderView::section {
+    background: $bg-card;
+    color: $text-primary;
+    border: none;
+    padding: 4px;
+    font-weight: bold;
+}
+
+QWizard QTextBrowser {
+    background: transparent;
+    color: $text-secondary;
+    border: none;
+}
+
+// Tab widget
+QTabWidget::pane {
+    background: $bg-primary;
+    border: none;
+}
+
+QTabBar::tab {
+    background: $bg-secondary;
+    color: $text-secondary;
+    border: none;
+    padding: 8px 20px;
+    font-size: 13px;
+}
+
+QTabBar::tab:selected {
+    background: $bg-card;
+    color: $accent;
+    border-bottom: 2px solid $accent;
+}
+
+QTabBar::tab:hover {
+    color: $text-primary;
+}

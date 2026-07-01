@@ -1,0 +1,2 @@
+[console_scripts]
+romulus = romulus.main:main

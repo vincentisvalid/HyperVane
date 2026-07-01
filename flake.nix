@@ -28,7 +28,7 @@
         ]);
 
         # ── Installable package ──────────────────────────────────────────────
-        hypervane = pkgs.qt6.mkDerivation {
+        hypervane = pkgs.stdenv.mkDerivation {
           pname   = "hypervane";
           version = "0.1.0";
 
@@ -39,7 +39,7 @@
             ninja
             pkg-config
             protobuf
-            qt6.wrapQtAppsHook
+            qt6.wrapQtAppsHook   # wraps binary with correct Qt env vars
           ];
 
           buildInputs = with pkgs; [
@@ -51,23 +51,56 @@
             abseil-cpp
           ];
 
-          # CMakeLists.txt lives in src/ui/
-          cmakeDir = "../src/ui";
+          # Qt6's qt_add_executable breaks when the build dir is inside the
+          # source tree. Use a fully out-of-tree build with an absolute source
+          # path so CMAKE_SOURCE_DIR and CMAKE_BINARY_DIR never overlap.
+          dontUseCmakeBuildDir = true;
 
-          cmakeFlags = [
-            "-DHYPERVANE_ASSETS_DIR=${placeholder "out"}/share/hypervane/assets"
-          ];
+          configurePhase = ''
+            runHook preConfigure
+            mkdir -p $NIX_BUILD_TOP/build
+            cmake -S $NIX_BUILD_TOP/source/src/ui \
+                  -B $NIX_BUILD_TOP/build \
+                  -GNinja \
+                  -DCMAKE_BUILD_TYPE=Release \
+                  -DCMAKE_INSTALL_PREFIX=$out \
+                  -DHYPERVANE_ASSETS_DIR=$out/share/hypervane/assets \
+                  $cmakeFlags
+            runHook postConfigure
+          '';
+
+          buildPhase = ''
+            runHook preBuild
+            ninja -C $NIX_BUILD_TOP/build -j$NIX_BUILD_CORES
+            runHook postBuild
+          '';
+
+          installPhase = ''
+            runHook preInstall
+            ninja -C $NIX_BUILD_TOP/build install
+            runHook postInstall
+          '';
 
           postInstall = ''
-            # Assets
+            # Assets (intro video + platform badges + icon)
             mkdir -p $out/share/hypervane
             cp -r $src/assets $out/share/hypervane/assets
 
             # Desktop entry
             mkdir -p $out/share/applications
-            cp $src/assets/hypervane.desktop $out/share/applications/hypervane.desktop
-            substituteInPlace $out/share/applications/hypervane.desktop \
-              --replace "Exec=hypervane" "Exec=$out/bin/hypervane-ui"
+            cat > $out/share/applications/hypervane.desktop << EOF
+[Desktop Entry]
+Name=HyperVane
+GenericName=Emulation Frontend
+Comment=Intelligent multi-system emulation frontend and library manager
+Exec=$out/bin/hypervane-ui
+Icon=hypervane
+Type=Application
+Categories=Game;Emulator;
+Keywords=emulator;rom;retro;gaming;
+StartupNotify=true
+StartupWMClass=hypervane-ui
+EOF
 
             # Icon
             mkdir -p $out/share/icons/hicolor/scalable/apps

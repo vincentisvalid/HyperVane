@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: romulus
+Version: 0.1.0
+Summary: ROMULUS — The PlayStation ROM Downloader and Search Engine
+Requires-Python: >=3.11
+Requires-Dist: playwright>=1.44
+Requires-Dist: playwright-stealth>=1.0
+Requires-Dist: httpx[http2]>=0.27
+Requires-Dist: beautifulsoup4>=4.12
+Requires-Dist: rapidfuzz>=3.6
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: rich>=13.7

@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(chmod +x *)",
+      "Bash(nix develop *)",
+      "Bash(git *)",
+      "Bash(sudo *)",
+      "Bash(grep -v \"^$\")",
+      "Bash(nix-instantiate --eval -E 'with import <nixpkgs> {}; builtins.map \\(p: p.name or \"missing\"\\) [libretro.swanstation pcsx2 rpcs3 shadps4 cemu retroarch-free]')",
+      "Bash(chown -R b1u3g0d:users /home/b1u3g0d/Projects/HyperVane/assets/platform_badges)",
+      "Bash(chown -R b1u3g0d:users /home/b1u3g0d/Projects/HyperVane)",
+      "Bash(nix eval *)"
+    ]
+  }
+}

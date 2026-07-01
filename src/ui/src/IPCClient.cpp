@@ -113,18 +113,29 @@ void IPCClient::dispatchEnvelope(const QByteArray &data)
             QString::fromStdString(env.preview_ready().file_path()));
         break;
 
+    case hypervane::Envelope::kScrapeProgress:
+        emit scrapeProgress(
+            QString::fromStdString(env.scrape_progress().rom_id()),
+            env.scrape_progress().percent(),
+            QString::fromStdString(env.scrape_progress().stage()),
+            QString::fromStdString(env.scrape_progress().message()));
+        break;
+
     case hypervane::Envelope::kSearchResponse: {
         QVector<RomInfo> roms;
         roms.reserve(env.search_response().results_size());
         for (const auto &e : env.search_response().results()) {
-            roms.push_back({
-                QString::fromStdString(e.id()),
-                QString::fromStdString(e.title()),
-                QString::fromStdString(e.platform()),
-                QString::fromStdString(e.region()),
-                QString::fromStdString(e.file_path()),
-                e.verified(),
-            });
+            RomInfo ri;
+            ri.id       = QString::fromStdString(e.id());
+            ri.title    = QString::fromStdString(e.title());
+            ri.platform = QString::fromStdString(e.platform());
+            ri.region   = QString::fromStdString(e.region());
+            ri.filePath = QString::fromStdString(e.file_path());
+            ri.verified = e.verified();
+            ri.crc32    = QString::fromStdString(e.crc32());
+            ri.sha1     = QString::fromStdString(e.sha1());
+            ri.fileSize = e.file_size();
+            roms.push_back(ri);
         }
         emit searchResultsReceived(roms);
         break;

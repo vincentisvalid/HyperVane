@@ -27,6 +27,7 @@ public:
 signals:
     void connected();
     void previewReady(const QString &romId, const QString &filePath);
+    void scrapeProgress(const QString &romId, float percent, const QString &stage, const QString &message);
     void searchResultsReceived(const QVector<RomInfo> &roms);
     void processEventReceived(const QString &romId, int kind, quint64 runtimeMs);
     void connectionLost();
